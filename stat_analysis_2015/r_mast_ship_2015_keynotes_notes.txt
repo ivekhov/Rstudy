@@ -1,0 +1,530 @@
+r_mast_ship_2015_keynotes
+резюме: достойная работа, стоит по коду разобрать материал глав: 6, 7,  8, 5, 4
+материал этих глав известен на базовом уровне, интерес в них представляет проработка примеров и рассмотрение деталей + аспектов задач.  “в целом, о чем речь понятно, а детали интересны”. 
+https://www.dropbox.com/home/work/Rstudy/stat_analysis_mast_ship_2015?preview=%D0%9C%D0%B0%D1%81%D1%82%D0%B8%D1%86%D0%BA%D0%B8%D0%B9+%D0%A1.%D0%AD.%2C+%D0%A8%D0%B8%D1%82%D0%B8%D0%BA%D0%BE%D0%B2+%D0%92.%D0%9A.+-+%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7+%D0%B8+%D0%B2%D0%B8%D0%B7%D1%83%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85+%D1%81+%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E+R+-+2015.pdf
+
+
+----------
+
+Глава 4: анализ распределений, описательные статистики.
+
+решение проблемы пропущенных значений
+поиск корней уравнений по предполагаемым распределениям
+подбор распределений под имеющиеся данные (графики) 
+Есть библиотеки и методы для подбора вида распределения для имеющихся данных. Например, по методу макс правдоподо2бия.
+
+формальные тесты для проверки на соответствие данных  нормальному характеру распределения)
+    # Shapiro-Uilco
+    # Anderson-Darlling
+    # Cramer-von Mises
+    # Kolmogorov-Smirnov with Lilieforce addition 
+
+----------
+
+Глава 5: классические стат.тесты проверки наличия взаимосвязи
+КОЛИЧЕСТВЕННЫЕ ПЕРЕМЕННЫЕ
+сравнение средних по 
+
+    т-тесту Стьюдента,
+    Манна-Уитни-Уилкоксона 
+
+мощность теста
+проверка на различие дисперсий в группах : 
+
+    тест Фишера Ф в 2=х группах
+    в более, чем 2 группах: 
+        Ливин
+        Бартлетт
+        Флигнер-Киллена
+        Брауна-Форсайта
+
+Анализ корреляции колич.переменных - Пирсона, Спирмана, Кендалла
+
+ТАБЛИЦЫ СОПРЯЖЕННОСТИ
+Независимые выборки
+
+    хи-квадрат - для отличия текущего распределения от какого-то (с которым производится сверка)
+
+Зависимые выборки
+
+    критерий Фишера
+    Мак-Немара
+    Кохрана-Мантеля-Хензеля
+
+Мощность тестов. 
+alpha - уровень значимости, например 0.05, вероятность ошибка 1 рода, то есть вероятность отвергнуть правильную нулевую гипотезу
+betta - вероятоность ошибки 2 рода, то есть принять неверную нулевую гипотезу.
+Мощность критерия = 1 - betta.
+
+Если критерий не показывает связь, то проверить мощность теста и достаточность характеристик испытания.
+Следует заранее вычислять необходимые характеристики исследования (размер выборки для получения достаточно надежных результатов  с заданным уровнем значимости альфа).
+
+----------
+
+Глава 6. Дисперсионный анализ
+ПРОТОКОЛ РАЗВЕДОЧНОГО АНАЛИЗА ДАННЫХ 
+‘explanatory data analysis'
+Предлагаемый протокол включает следующие основные элементы:
+ 1) формулировка исследовательской гипотезы и выполнение экспериментадля сбора необходимых данных;
+ 2) разведочный анализ данных:
+ выявление точек-выбросов;
+ проверка однородности дисперсий;
+ проверка нормальности распределения данных;
+ выявление избыточного количества нулевых значений;
+ выявление коллинеарных переменных;
+ выявление характера связи между анализируемыми переменными;
+ выявление взаимодействий между переменными-предикторами;
+ выявление пространственно-временных корреляций между значения-ми зависимой переменной;
+ 3) применение статистического метода (модели) в соответствии с поставлен-ной задачей и свойствами данных.
+
+----------
+----------
+
+Exploratory data analysis
+Предлагаемый протокол включает следующие основные элементы:
+
+1) формулировка исследовательской гипотезы и выполнение эксперимента
+для сбора необходимых данных;
+
+2) разведочный анализ данных:
+ Выявление точек-выбросов;
+Обычно, исключение, но зависит от ситуации. 
+
+ Проверка однородности дисперсий;
+в группах д.б. сопоставимые дисперсии показателей. 
+если не, логарифмирование или методы, допускающие  неоднородность дисперсии.
+
+ Проверка нормальности распределения данных;
+Колич.переменные д.б. нормально распределены. 
+Для проверки по другим типам распределений - методы., в т.ч. fitdistrplus.
+
+ Выявление избыточного количества нулевых значений;
+Часто счетные данные подчиняются отрицательному биномиальному рас-
+пределению или распределению Пуассона, и поэтому для их анализа не подходят
+обычные модели линейной регрессии, предполагающие нормальное распределе-
+ние остатков. Здесь следует использовать
+обобщенные линейные модели.
+
+ Выявление коллинеарных переменных;
+corrplot()
+Инфляция дисперсии VIF
+car::vif()
+итерационный подход на практике, определение -- исключение -- пересчет -- ...
+значение около 4 - есть некоторая коллинеарность, 10 - крайне много
+Анализ графиков, в том числе. 
+
+ выявление характера связи между анализируемыми переменными;
+Коэфф-ты корреляции и диаграммы рассеяния. 
+EDF 
+
+ выявление взаимодействий между переменными-предикторами;
+Корреляционный анализ, графики рассеяния и распределения. 
+
+
+ выявление пространственно-временных корреляций между значения-
+ми зависимой переменной;
+Проблема уникальности исследуемых объектов. 
+«использование дедуктивной статистики для оценки влияния фактора, когда данные экспе-
+римента фактически не имеют повторностей или эти повторности не являются
+статистически независимыми...»
+
+
+Существует несколько основных принципов обеспечить статистическую неза-
+висимость повторностей эксперимента от контролируемых внешних факторов:
+1) рандомизация , то есть планирование экспериментальных групп таким образом, 
+чтобы они различались между собой (в среднем) лишь уровнем изучаемого 
+воздействия, а прочие факторы влияли бы на сформированные группы
+случайно и равновероятно;
+
+2) использование моделей со смешанными эффектами, в них присутствуют особые 
+члены – случайные факторы, которые аккумулируют в себе всю возможную 
+пространственно-временную изменчивость 
+
+3) анализ временной и пространственной автокорреляции
+отклика и построение кригинговых моделей, в которых регулярная составляющая 
+изменчивости рядов данных учитывается посредством специально сконструированных 
+предикторов.
+
+Проверка с помощью: автокорреляционной функции. 
+При оценке этой функции последовательно происходит расчет коэффициента 
+корреляции Пирсона между значениями того же временного ряда, но каждый раз 
+взятых со сдвигом по времени на определенную величину k (лаг)
+acf()
+
+Вариограммы: 
+nlme::Variogram()
+geor::variog()
+gstat::variogram()
+
+3) применение статистического метода (модели) в соответствии с поставлен-
+ной задачей и свойствами данных.
+
+----------
+----------
+
+ДИСПЕРСИОННЫЙ АНАЛИЗ
+
+EXPLORATORY DATA ANALYSIS. Process
+
+#-------------------------------------------------------------------
+
+Collinearity analysis
+
+#-------------------------------------------------------------------
+load(file = 'sleep_imp.Rdata')
+M <- cor(sleep_imp3)
+library(corrplot)
+col4 <- colorRampPalette( c( "#7F0000", "red", "#FF7F00", "yellow", "#7FFF7F", "cyan", "#007FFF", "blue", "#00007F"))
+corrplot(M, method = 'color', col = col4(20), cl.length = 21, 
+order = 'AOE', addCoef.col = 'green')
+library(car)
+vif(
+lm(
+Sleep ~ BodyWgt + BrainWgt + Span + Gest + Pred + Exp + Danger,
+data = sleep_imp3
+)
+)
+#-------------------------------------------------------------------
+
+Correlation among variables
+
+#-------------------------------------------------------------------
+cars <- mtcars[, 1:7]
+pairs(cars, panel = panel.smooth)
+#
+
+manual chart creation
+
+panel.cor <- function(x, y, digits = 2, 
+prefix = '', cex.cor, ..)
+{
+usr <- par('usr'); on.exit(par(usr))
+par(usr = c(0, 1, 0, 1))
+r <- abs(cor(x, y, method = 'spearman'))
+txt <- format(c(r, 0.123456789), digits = digits)[1]
+txt <- paste(prefix, txt, sep = '')
+if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+pairs(cars, panel = panel.smooth, lower.panel = panel.cor)
+#
+
+chart from lattice
+
+library(lattice)
+splom(cars)
+#
+
+Ggally
+
+library(GGally)
+ggpairs(cars,
+upper = list(continuous = 'density', combo = 'box'),
+lower = list(continuous = 'points', combo = 'dot')
+)
+#
+
+EDF effective degree of freedom
+nonlinear relation (if > 1.5 means that non-linear connection exists)
+
+library(mgcv)
+summary(gam(mpg ~ s(hp) + s(qsec), data = cars))
+#
+#-------------------------------------------------------------------
+
+Realtionship among predictors
+
+#-------------------------------------------------------------------
+
+Categorical variables
+
+Sparrows <- read.table(file = "SparrowsElphick.txt" , header = TRUE)
+View(Sparrows)
+I1 <- Sparrows$SpeciesCode == 1 &
+Sparrows$Sex != '0' &
+Sparrows$wingcrd < 65
+Wing1 <- Sparrows$wingcrd[I1]
+Weil <- Sparrows$wt[I1]
+Mon1 <- factor(Sparrows$Month[I1])
+Sex1 <- factor(Sparrows$Sex[I1])
+fMonth1 <- factor(Mon1, levels = c(5, 6, 7, 8, 9), 
+labels = c('May', 'June', 'July', 'August', 'Sep' ))
+fSex1 <- factor(Sex1, levels = c(4,5 ), 
+labels = c('M', 'W'))
+coplot(Weil ~ Wing1 | fMonth1 * fSex1, 
+ylab = c('Weight', 'Sex'),
+xlab = c('Length', 'Month'),
+panel = function(x, y, ...) {
+tmp <- lm(y ~ x, na.action = na.omit)
+abline(tmp)
+points(x, y)
+}
+)
+#
+df <- data.frame(weight = Weil, length = Wing1, 
+sex = fSex1, month = fMonth1)
+df1 <- df[df$month != 'May' & df$month != 'Sep', ]
+require(stargazer)
+stargazer(M1, type = 'html', out = 'M1.doc')
+stargazer(DT, type = 'html', out = 'DT.doc', summary = FALSE)
+#-------------------------------------------------------------------
+
+Space and time factors -- on dependent vatiables
+
+#-------------------------------------------------------------------
+Waders <- read.table(file = 'wader.txt', header = TRUE)
+Time <- seq(1, 25)
+par(
+mfrow = c(2, 2), 
+mar = c(5, 4, 3, 2)
+)
+plot(Time, Waders$C.fuscicolis, type = 'l', xlab = 'Time 2 weeks', 
+ylab = 'Population C.fuscicolis')
+acf(Waders$C.fuscicolis, main = 'ACF C.fuscicolis')
+plot(Time, Waders$L.dominicanus, type = 'l', 
+xlab = 'Time 2 weeks', 
+ylab = 'Population L.dominicanus')
+acf(Waders$L.dominicanus, main = 'ACF L.dominicanus')
+
+nlme::Variogram()
+geor::variog()
+gstat::variogram()
+
+######################################################################
+
+p.219 Analysis fo VARIANCE
+Aim of Variance analysis - estimate, if numerical values (means)
+are affected by other factors. Factors are nominative scale data.
+
+#-------------------------------------------------------------------------------
+
+EXAMPLE 1
+
+tomato <- data.frame(weight = c(1.5, 1.9, 1.3, 1.5, 2.4, 1.5,
+1.5, 1.2, 1.2, 2.1, 2.9, 1.6,
+1.9, 1.6, 0.8, 1.15, 0.9, 1.6),
+trt = rep(c("Water", "Nutrient", "Nutrient+24D"),
+c(6, 6, 6)))
+View(tomato)
+tomato$trt <- as.factor(tomato$trt)
+tomato$trt <- relevel(tomato$trt, ref = 'Water')
+levels(tomato$trt)
+
+?relevel
+
+#
+
+LINEAR MODEL
+
+M <- lm(weight ~ trt, data = tomato)
+summary(M)
+tapply(tomato$weight, tomato$trt, mean)
+#tapply(tomato$weight, mean) # error
+anova(M)
+aov(weight ~ trt, data = tomato)
+#?aov
+model.matrix(M)
+#
+#-------------------------------------------------------------------------------
+
+EXAMPLE 2
+null-hypot : average among 6 groups do not different
+6 groups per 12 obsercations
+
+M <- lm(count ~ spray, data = InsectSprays)
+View(InsectSprays)
+str(M)
+M.res <- M$residuals
+M.fit <- M$fitted.values
+
+test of heterosked-ty on chart
+
+plot(M.fit, M.res, pch = 19, col = 4, 
+xlab = 'predicted', ylab = 'residuals')
+
+test of correlation
+
+cor.test(fitted(M), InsectSprays$count)
+#
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+
+MODEL ADEQUACY
+model assumption testing
+p-value < 2.2e-16 --> null decline, MEANs differs significantly
+Condition on trusting F as correct estimation :
+1 target var is independent variable
+2 target var in groups are normally distributed
+3 in groups variance not differ (i.e. homoskeda-ty of variance)
+
+#-------------------------------------------------------------------------------
+
+1 target var is independent variable
+(under control on experiment planning stage)
+
+#-------------------------------------------------------------------------------
+
+2 target var in groups are normally distributed
+(overall normal distribution is not necessary:
+in-groups is more important)
+charts : qqplot. General idea - testing residuals, if they are normal.
+
+car::qqPlot(
+resid(M), 
+dist = 'norm', 
+col = palette()[1], pch = 19, 
+xlab = 'normal', 
+ylab = 'observed', 
+main = 'quantiles comparison')
+
+ideal normal
+
+library(sm)
+sm.density(resid(M), 
+model = 'Normal', 
+xlab = 'Imitated sample', 
+ylab = 'Function density distribution')
+
+--------------------------------
+distributions of variables inside groups
+
+ggplot(InsectSprays, aes(x = count)) + geom_histogram() +
+facet_wrap(~spray) +
+xlab("Число насекомых") + ylab("Частота")
+
+predicted vs observed
+
+ggplot(InsectSprays, aes(sample = count)) + 
+stat_qq() +
+facet_wrap(~spray, scales = "free_y") +
+xlab("Ожидаемые квантили") + ylab("Наблюдаемые значения")
+#install.packages('gridExtra')
+library(gridExtra)
+InsectSprays$resids = resid(M)
+library(ggplot2)
+
+combo chart : 1) distribution of residuals and 2) QQ-plot
+
+p3 = ggplot(InsectSprays, aes(x = resids)) + 
+geom_histogram(aes(y=..density..)) +
+geom_density(color = "red") + 
+xlab("Остатки") + ylab("Плотность вероятности")
+p4 = ggplot(InsectSprays, aes(sample = resids)) + stat_qq() +
+xlab("Ожидаемые квантили") + ylab("Наблюдаемые значения")
+grid.arrange(p3, p4, ncol = 2)
+
+--------------------------------
+formal test: shapiro-uilka, anderson-darling, bartlett, etc.
+on small samples - problem
+
+shapiro.test(resid(M))
+
+p-value = 0.02226 : null-hypo('not differes from normality') declined -->
+distribution is not normal.
+
+#-------------------------------------------------------------------------------
+
+3 in groups variance not differ (i.e. homoskeda-ty of variance)
+General idea: Variance of residuals should be homogen. ('the same level')
+boxplot()
+
+set.seed(202)
+ggplot(InsectSprays, aes(x = spray, y = count)) + geom_boxplot() +
+geom_jitter(alpha = 0.5) +
+xlab("Инсектицид") + ylab("Число выживших насекомых")
+
+test of heterosked-ty on chart
+
+plot(M.fit, M.res, pch = 19, col = 4, 
+xlab = 'predicted', ylab = 'residuals')
+
+or in ggplot :
+
+InsectSprays$fit = fitted(M)
+ggplot(InsectSprays, aes(x = fit, y = resids)) + geom_point() +
+xlab("Предсказанные значения") + ylab("Остатки")
+#по мере увеличения предсказанных моделью
+
+средних групповых значений разброс остатков также увеличивается. Такая «во-
+ронкообразная» форма распределения остатков типична для случаев, когда усло-
+вие однородности групповых дисперсий не выполняетс
+(growth of mean eith growth of variance == variance are not homogen)
+formal test
+
+car::leveneTest(InsectSprays$count, InsectSprays$spray)
+
+p-val : 0.004223 =- > null hypo ("variance are homogen") is declined
+RESUME : one-way variance analysis could not be used here.
+
+#-------------------------------------------------------------------------------
+
+what to do?
+1 distr normal, variance are heterosked
+Wlch test
+
+oneway.test()
+?oneway.test
+
+or permutation test
+
+?lmPerm
+
+2 distr notnormal, variance are homogen. Options:
+1 logarithm transformation
+2 degree transformation Box-Cox
+3 non-parametric analysis: rang variance analysis Kruskell-Walless
+3 distr notnormal, variance are heterosked. options -->>
+1 GLM.
+log transfomation -->> new model
+2 non-param methods (f.e. Kruskell-Walless)
+
+#-------------------------------------------------------------------------------
+
+EXAMPLE 3 scenario:
+
+M.log <- lm(log(count + 1) ~ spray , data = InsectSprays)
+summary(M.log)
+shapiro.test(resid(M.log))
+
+normality test is passed: p-value = 0.5348
+
+car::leveneTest(log(InsectSprays$count + 1), InsectSprays$spray)
+
+homogen of Variance test is passed : p = 0.1093
+
+################################################################################
+################################################################################
+
+KRUSKELL-WALLES variance analysis
+
+################################################################################
+
+non-parametrical method, normal distribution is not necessary
+null--hypo: no difference among groups
+with 2 groups KRUSKELL-WALLES == MANN-UITNI
+
+#-------------------------------------------------------------------------------
+
+EXAMPLE
+
+kruskal.test(count ~ spray, data = InsectSprays)
+
+p-value = 1.511e-10 --> hull hypo is declined == differenece exists
+
+################################################################################
+################################################################################
+
+TWO- and MANY-FACTORS variance analysis
+
+################################################################################
+
+aov problem - data should be balanced in groups evaluated
+2way ANOVA : impacat of 2 factors ad relation between 2 factors
+
+data(weightgain, package="HSAUR2")
+M2 <- lm(weightgain ~ type * source, data = weightgain)
+summary(M2)
+
+Aim of Variance analysis - estimate, if numerical values (means)
+are affected by other factors. Factors are nominative scale data.
+
